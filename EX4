@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main(){
+    FILE* fp;
+    int a[3]={1,2,3};
+    int b[3]={4,5,6};
+    int c[3]={7,8,9};
+    int x[3],y[3],z[3];
+    
+    fp=fopen("a.bin","wb+");
+    fwrite(a,sizeof(a),1,fp);
+    fwrite(b,sizeof(b),1,fp);
+    fwrite(c,sizeof(c),1,fp);
+    fseek(fp,0,SEEK_SET);
+    fread(x,sizeof(x),1,fp);
+    fread(y,sizeof(y),1,fp);
+    fread(z,sizeof(z),1,fp);
+    for (int i=0;i<3;i++)
+    printf("%d %d %d\n",x[i],y[i],z[i]);
+    fclose(fp);
+    return 0;
+}
